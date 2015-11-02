@@ -41,6 +41,8 @@ void deviceRestore();
 void progressUI();
 void appleChoiceAction();
 void linuxChoiceAction();
+void WinChoiceAction();
+
 
 int main() {
     system("clear");
@@ -57,6 +59,9 @@ void mainMenu()
 #endif
 #ifdef __linux__
     linuxChoiceAction();
+#endif
+#ifdef _WIN32
+    printf("I'll update this tool for Windows soon\n");
 #endif
 }
 
@@ -191,6 +196,45 @@ void linuxChoiceAction()
             printf("Invalid input. Try again.\n");
             break;
     }
+}
+
+void WinChoiceAction()
+{
+    int userSelection;
+    menuSelect();
+    cin >> userSelection;
+    switch (userSelection) {
+        case 1:
+            system("clear");
+            odysseusLogo();
+            printf("\n");
+            makeIPSW();
+            break;
+        case 2:
+            system("clear");
+            odysseusLogo();
+            printf("\n");
+            grabDemBlobs();
+            break;
+        case 3:
+            system("clear");
+            odysseusLogo();
+            printf("\n");
+            validateBlobs();
+            break;
+        case 4:
+            system("clear");
+            odysseusLogo();
+            printf("\n");
+            deviceRestore();
+            break;
+        case 5:
+            break;
+        default:
+            printf("Invalid input. Try again.\n");
+            break;
+    }
+
 }
 
 void makeIPSW()
