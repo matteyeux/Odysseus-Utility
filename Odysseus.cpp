@@ -60,8 +60,8 @@ void mainMenu()
 #ifdef __linux__
     linuxChoiceAction();
 #endif
-#ifdef _WIN32
-    printf("I'll update this tool for Windows soon\n");
+#ifdef _WIN32 //Added support for Windows
+    WinChoiceAction();
 #endif
 }
 
@@ -78,6 +78,7 @@ void odysseusLogo ()
     printf("  \\____/ \\__,_|\\__, |___/___/\\___|\\__,_|___/\n");
     printf("                __/ | toolchain by xerub   \n");
     printf("               |___/       utility by dayt0n\n");
+    printf("                 Windows version by matteyeux\n");
     printf("============================================\n");
 }
 
@@ -383,6 +384,30 @@ void grabDemBlobs() // This part MAYBE works...
             return;
         }
 #endif
+#ifdef _WIN32
+        system("./irecovery -f pwnediBEC");
+        sleep(6);
+        printf("Sending payload...\n");
+        system("./irecovery -f ../payload"); // For some reason this is currently failing in OS X 10.11 beta 2. Will update and check later.
+        sleep(3);
+        system("./irecovery -c \"go blobs\"");
+        sleep(3);
+        printf("Grabbing blobs...\n");
+        system("./irecovery -g precious.dump");
+        sleep(3);
+        if (fstream("precious.dump"))
+        {
+            printf("Got blobs. Booting back to userland.\n");
+            system("./irecovery -c \"reboot\"");
+            sleep(1);
+        }
+        else
+        {
+            system("./irecovery -c \"reboot\"");
+            printf("\nFailed to obtain blobs.\n");
+            return;
+        }
+#endif
 #ifdef __linux__
         system("sudo ./irecovery -f pwnediBEC"); // Should probably say this now: but in my experience, Linux requires root to access USB. This means that you will have to have an option for OS X and Linux everytime you use a tool like irecovery or idevicerestore that interacts with USB.
         sleep(5);
@@ -493,6 +518,9 @@ void deviceRestore() // This *should* restore the device to the desired firmware
 #ifdef __APPLE__ && __MACH__
         system("killall iTunesHelper");
         system("./idevicerestore -d -w custom.ipsw");
+#endif
+#ifdef _WIN32
+        system("idevicerestore -d -w custom.ipsw");
 #endif
 #ifdef __linux__
         system("sudo ./idevicerestore -d -w custom.ipsw");
