@@ -25,7 +25,8 @@ Place the Odysseus binary in odysseus-VERSION/linux/
 ./Odysseus
 </pre>
 
-This tool works on Windows:
+This tool works on Windows.
+You can use it with [Elrhk's Windows version](https://github.com/elrhk/Odysseus)
 
 Place the Odysseus binary in odysseus-VERSION/windows/
 <pre>
