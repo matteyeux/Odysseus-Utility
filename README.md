@@ -38,7 +38,7 @@ This tool is currently in beta (I guess?) so expect maybe a few bugs here and th
 
 Tested on OS X, Ubuntu 14.04, Ubuntu 15.04, Linux Mint and Windows 10.
 
--[dayt0n](http://twitter.com/daytonhasty)
+-[dayt0n](http://twitter.com/daytonhasty) <br>
 -[matteyeux](http://twitter.com/matteyeux) (Windows support)
 
 Credits (for Odysseus toochain)
