@@ -1,2 +1,6 @@
+CC = g++
+
 all:
-	g++ Odysseus.cpp -o Odysseus
+	@echo 'Building Odysseus-Utility...'
+	@$(CC) Odysseus.cpp -o Odysseus
+	@echo 'Succesfully built Odysseus'

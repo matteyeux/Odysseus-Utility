@@ -25,10 +25,18 @@ Place the Odysseus binary in odysseus-VERSION/linux/
 ./Odysseus
 </pre>
 
+This tool works on Windows :
+
+Place the Odysseus binary in odysseus-VERSION/windows/
+<pre>
+Odysseus.exe
+</pre>
+
+
 This tool is currently in beta (I guess?) so expect maybe a few bugs here and there.
 
 
-Tested on OS X, Ubuntu 14.04, Ubuntu 15.04, and Linux Mint.
+Tested on OS X, Ubuntu 14.04, Ubuntu 15.04, Linux Mint and Windows 10.
 
 -[dayt0n](http://twitter.com/daytonhasty)
 
