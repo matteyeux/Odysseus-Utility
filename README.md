@@ -11,21 +11,7 @@ make
 
 ## To use:
 
-On OS X:
-
-Place the Odysseus binary in odysseus-VERSION/macos/
-<pre>
-./Odysseus
-</pre>
-
-On Linux:
-
-Place the Odysseus binary in odysseus-VERSION/linux/
-<pre>
-./Odysseus
-</pre>
-
-This tool works on Windows.
+This tool works on Windows only. If you need to run this tool on Linux or OS X check [dayt0n's repo](https://github.com/dayt0n/Odysseus-Utility)
 You can use it with [Elrhk's Windows version](https://github.com/elrhk/Odysseus)
 
 Place the Odysseus binary in odysseus-VERSION/windows/
