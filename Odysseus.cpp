@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Birth: 7/6/2015
- * This version of Odysseus-Utility works only with Windows, check dayt0n's Github to run the Linux/OS X version
+ *
  */
 
 #include <stdio.h>
@@ -65,13 +65,14 @@ void odysseusLogo ()
     printf("  \\____/ \\__,_|\\__, |___/___/\\___|\\__,_|___/\n");
     printf("                __/ | toolchain by xerub   \n");
     printf("               |___/       utility by dayt0n\n");
+    printf("                 Windows version by matteyeux\n");
     printf("============================================\n");
 }
 
 void menuSelect()
 {
     printf("Do you want to: \n\n");
-    printf("1) Make iPSW and prepare kloader\n");
+    printf("1) Make IPSW and prepare kloader\n");
     printf("2) Grab on-device blobs\n");
     printf("3) Validate existing blobs\n");
     printf("4) Restore device to desired firmware\n");
@@ -140,7 +141,7 @@ void makeIPSW()
     system("clear");
     if (isOTA == 'n') {
         printf("Grabbing baseband.tar...\n");
-        system(("./sshtool -s baseband.tar -p 22 "+deviceIP).c_str());
+        system(("sshtool -s baseband.tar -p 22 "+deviceIP).c_str());
         system("clear");
     printf("Creating iPSW...\n"); // Below: If-ception
     if (moarRAM != 'y')
@@ -148,18 +149,18 @@ void makeIPSW()
         if (bareJB != 'y')
         {
             if (ifstream("baseband.tar")) {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw baseband.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw baseband.tar").c_str());
             }
             else
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw").c_str());
         }
         else
         {
             if (ifstream("baseband.tar")) {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw baseband.tar ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw baseband.tar ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
             }
             else
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
         }
     }
     else
@@ -167,18 +168,18 @@ void makeIPSW()
         if (bareJB != 'y')
         {
             if (ifstream("baseband.tar")) {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory baseband.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory baseband.tar").c_str());
             }
             else
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory").c_str());
         }
         else
         {
             if (ifstream("baseband.tar")) {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory baseband.tar ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory baseband.tar ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
             }
             else
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
         }
     }
     }
@@ -189,22 +190,22 @@ void makeIPSW()
         {
             if (bareJB != 'y')
             {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -bbupdate").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -bbupdate").c_str());
             }
             else
             {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -bbupdate ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -bbupdate ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
             }
         }
         else
         {
             if (bareJB != 'y')
             {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory -bbupdate").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory -bbupdate").c_str());
             }
             else
             {
-                system(("./ipsw "+downloadedIPSW+" custom.ipsw -memory -bbupdate ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
+                system(("ipsw "+downloadedIPSW+" custom.ipsw -memory -bbupdate ../jb/p0sixspwn.tar ../jb/ssh_small.tar").c_str());
             }
         }
 
@@ -212,7 +213,7 @@ void makeIPSW()
     if (ifstream("custom.ipsw")) {
         system("clear");
         printf("Extracting PWNed iBSS image...\n");
-        system("./xpwntool `unzip -j custom.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'` pwnediBSS");
+        system("xpwntool `unzip -j custom.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'` pwnediBSS");
         system("clear");
         printf("Image extracted. \nYou now have a custom iPSW and PWNed iBSS to kickstart the restore.\n");
     }
@@ -232,7 +233,7 @@ void grabDemBlobs() // This part MAYBE works...
         printf("\nExtracting PWNed iBEC...\n");
         system("mv `unzip -j custom.ipsw 'Firmware/dfu/iBEC*' | awk '/inflating/{print $2}'` pwnediBEC");
         printf("Kloading PWNed iBSS...(might want to CTRL+C if it hangs at the end)\n");
-        system(("./sshtool -k ../kloader -b pwnediBSS -p 22 "+deviceIP).c_str());
+        system(("sshtool -k ../kloader -b pwnediBSS -p 22 "+deviceIP).c_str());
         sleep(10);
         system("clear");
         printf("Unplug and replug the USB cable connected the iDevice. Then, press [Enter].\n");
@@ -301,12 +302,12 @@ void validateBlobs()
     {
         system(("zcat "+meBlob+" > XML.shsh").c_str());
         system("plutil -convert xml1 XML.shsh");
-        system(("./validate XML.shsh "+downloadedBlobIPSW+" -z").c_str());
+        system(("validate XML.shsh "+downloadedBlobIPSW+" -z").c_str());
         printf("\nConverted Blob saved as XML.shsh in Odysseus working directory.\n");
     }
     else
     {
-        system(("./validate "+meBlob+" "+downloadedBlobIPSW+" -z").c_str());
+        system(("validate "+meBlob+" "+downloadedBlobIPSW+" -z").c_str());
     }
     printf("\nBlobs validated.\n");
 }
@@ -321,7 +322,7 @@ void deviceRestore() // This *should* restore the device to the desired firmware
         printf("Enter the desired device's local IP address: ");
         cin.ignore(100,'\n');
         getline(cin, deviceIP);
-        system(("./sshtool -k ../kloader -b pwnediBSS -p 22 "+deviceIP).c_str());
+        system(("sshtool -k ../kloader -b pwnediBSS -p 22 "+deviceIP).c_str());
         sleep(10);
         system("clear");
         odysseusLogo();
