@@ -2,6 +2,7 @@ Odysseus (Utility)
 ==================
 
 This makes using Odysseus easier and automates most things for those less experienced. More features to come in the future.
+**Install Cygwin or Mingw**
 
 ## To build:
 
