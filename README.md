@@ -11,8 +11,8 @@ make
 
 ## To use:
 
-This tool works on Windows only. If you need to run this tool on Linux or OS X check [dayt0n's repo](https://github.com/dayt0n/Odysseus-Utility)
-You can use it with [Elrhk's Windows version](https://github.com/elrhk/Odysseus)
+This tool works on Windows only. If you need to run this tool on Linux or OS X check [dayt0n's repo](https://github.com/dayt0n/Odysseus-Utility)<br>
+I'll add a link to download Windows version of Odysseus in few hours.
 
 Place the Odysseus binary in odysseus-VERSION/windows/
 <pre>
