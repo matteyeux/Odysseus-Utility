@@ -12,7 +12,7 @@ make
 ## To use:
 
 This tool works on Windows only. If you need to run this tool on Linux or OS X check [dayt0n's repo](https://github.com/dayt0n/Odysseus-Utility)<br>
-I'll add a link to download Windows version of Odysseus in few hours.
+I'll add a link to download Windows built by [Dev__Jam](https://twitter.com/Dev__Jam) version of Odysseus in few hours.
 
 Place the Odysseus binary in odysseus-VERSION/windows/
 <pre>
